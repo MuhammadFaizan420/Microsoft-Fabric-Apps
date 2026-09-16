@@ -1,0 +1,7 @@
+EVALUATE
+SUMMARIZECOLUMNS(
+    'Dates'[Year-Month],
+    "Revenue", [Revenue],
+    "Target", [Target]
+)
+ORDER BY 'Dates'[Year-Month]

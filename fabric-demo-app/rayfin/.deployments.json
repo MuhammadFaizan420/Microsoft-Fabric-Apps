@@ -1,0 +1,15 @@
+{
+  "deployments": {
+    "fabric-app": {
+      "fabricItemId": "1b1efd3e-13a0-48b0-828a-9d6785b8cf28",
+      "fabricApiUrl": "https://pbipsea4-southeastasia.pbidedicated.windows.net/webapi/capacities/a9285dd3-1d0e-4812-afe2-ac0b802fe7f8/workloads/BaaS/BaaSService/automatic/v1/workspaces/beeee5c5-5107-447f-ab08-cb29b6f7570f/appbackends/1b1efd3e-13a0-48b0-828a-9d6785b8cf28/",
+      "fabricWorkspaceId": "beeee5c5-5107-447f-ab08-cb29b6f7570f",
+      "fabricTenantId": "cafee73d-1a14-4f50-bd73-8797cf9244f7",
+      "publishableKey": "pk-UAEnnw9tK1PI0UQ5n1He",
+      "hostingUrl": "https://fair-aspen-a982a41747-southeastasia.webapp.fabricapps.net",
+      "fabricDeepLink": "https://app.fabric.microsoft.com/groups/beeee5c5-5107-447f-ab08-cb29b6f7570f/appbackends/1b1efd3e-13a0-48b0-828a-9d6785b8cf28?ctid=cafee73d-1a14-4f50-bd73-8797cf9244f7",
+      "deployedAt": "2026-09-15T12:46:27.914Z"
+    }
+  },
+  "active": "fabric-app"
+}

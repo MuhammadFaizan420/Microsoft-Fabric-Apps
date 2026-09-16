@@ -1,0 +1,7 @@
+EVALUATE
+SUMMARIZECOLUMNS(
+    'SalesPerson'[Team],
+    "Revenue", [Revenue],
+    "Target", [Target]
+)
+ORDER BY [Revenue] DESC

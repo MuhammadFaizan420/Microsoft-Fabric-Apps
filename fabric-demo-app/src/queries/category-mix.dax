@@ -1,0 +1,7 @@
+EVALUATE
+SUMMARIZECOLUMNS(
+    'ProductGroup'[Category],
+    "Revenue", [Revenue],
+    "Quantity", [Quantity of Sales]
+)
+ORDER BY [Revenue] DESC

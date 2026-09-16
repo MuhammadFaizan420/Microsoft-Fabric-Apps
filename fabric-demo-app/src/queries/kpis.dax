@@ -1,0 +1,7 @@
+EVALUATE
+ROW(
+    "Revenue", [Revenue],
+    "Target", [Target],
+    "Customers", [Customer Coverage],
+    "Quantity", [Quantity of Sales]
+)

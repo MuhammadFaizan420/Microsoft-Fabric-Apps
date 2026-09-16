@@ -1,0 +1,299 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Bridged tokens — kept in `@theme static` so the CSS vars are always
+   emitted, not tree-shaken when no Tailwind utility consumes them.
+   Required because <VegaVisual> and <DataGrid> read these at runtime via
+   `useCssTheme()` and project them into a JS theme object (Vega's SVG output
+   cannot resolve `var()` references). */
+@theme static {
+  --color-brand:            #0f6cbd;  /* bar/area fills, button-like brand surfaces */
+  --color-brand-foreground: #0f6cbd;  /* line/point marks, branded text & emphasis */
+  --color-hover:            #f5f5f5;  /* row/cell hover surface in DataGrid + visuals */
+}
+
+@theme {
+  /* Color tokens — light theme
+     Usage: bg-*, text-*, border-* (e.g. bg-primary text-primary-foreground)
+     Each token has a -foreground pair for text on that surface. */
+  --color-background: #ffffff;                                       /* page background */
+  --color-foreground: #242424;                                       /* default text */
+
+  --color-card: #ffffff;                                             /* card surfaces */
+  --color-card-foreground: #242424;
+
+  --color-popover: #ffffff;                                          /* popover/dropdown surfaces */
+  --color-popover-foreground: #242424;
+
+  --color-primary: #0f6cbd;                                          /* primary actions & buttons */
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #fafafa;                                        /* secondary actions */
+  --color-secondary-foreground: #242424;
+
+  --color-muted: #f0f0f0;                                            /* subtle backgrounds */
+  --color-muted-foreground: #616161;                                 /* subdued text */
+
+  --color-accent: #f5f5f5;                                           /* accent highlights */
+  --color-accent-foreground: #242424;
+
+  --color-destructive: #b10e1c;                                      /* errors & destructive actions */
+  --color-destructive-foreground: #ffffff;
+
+  --color-success: #0e700e;                                          /* success surfaces */
+  --color-success-foreground: #ffffff;
+
+  --color-border: #e0e0e0;                                           /* default border */
+  --color-input: #e0e0e0;                                            /* input field borders */
+  --color-ring: #0f6cbd;                                             /* focus rings */
+
+  /* Elevation shadows — Fluent UI v9 ramp, keyed by resting elevation in px.
+     Usage: shadow-* (e.g. shadow-8, shadow-64) */
+  --shadow-2:  0 0 2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.14);
+  --shadow-4:  0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.14);
+  --shadow-8:  0 0 2px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.14);
+  --shadow-16: 0 0 2px rgba(0, 0, 0, 0.12), 0 8px 16px rgba(0, 0, 0, 0.14);
+  --shadow-28: 0 0 8px rgba(0, 0, 0, 0.12), 0 14px 28px rgba(0, 0, 0, 0.14);
+  --shadow-64: 0 0 8px rgba(0, 0, 0, 0.12), 0 32px 64px rgba(0, 0, 0, 0.14);
+
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-2xl: 12px;
+  --radius-3xl: 16px;
+  --radius-4xl: 24px;
+  --radius-5xl: 32px;
+  --radius-6xl: 40px;
+  --radius-full: 9999px;
+  --radius: 6px;
+
+  /* Spacing — 4px grid; use only these tokens, no interpolation. *-nudge = base − 2px.
+     Usage: p-*, m-*, gap-* (e.g. p-400 gap-300) */
+  --spacing-none: 0;
+  --spacing-100-nudge: 2px;
+  --spacing-100: 4px;
+  --spacing-200-nudge: 6px;
+  --spacing-200: 8px;
+  --spacing-300-nudge: 10px;
+  --spacing-300: 12px;
+  --spacing-400: 16px;
+  --spacing-500: 20px;
+  --spacing-600: 24px;
+  --spacing-700: 28px;
+  --spacing-800: 32px;
+
+  /* Font Sizes — 100-based scale 
+     Usage: text-* (e.g. text-300, text-hero-900) */
+  --text-100: 10px;
+  --text-200: 12px;
+  --text-300: 14px;
+  --text-400: 16px;
+  --text-500: 20px;
+  --text-600: 24px;
+  --text-hero-700: 28px;
+  --text-hero-800: 32px;
+  --text-hero-900: 40px;
+  --text-hero-1000: 68px;
+
+  /* Line Heights — paired with font sizes
+     Usage: leading-* (e.g. leading-300) */
+  --leading-100: 14px;
+  --leading-200: 16px;
+  --leading-300: 20px;
+  --leading-400: 22px;
+  --leading-500: 28px;
+  --leading-600: 32px;
+  --leading-hero-700: 36px;
+  --leading-hero-800: 40px;
+  --leading-hero-900: 52px;
+  --leading-hero-1000: 92px;
+
+  /* Font Weights
+     Usage: font-* (e.g. font-semibold) */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Font Families
+     Usage: font-* (e.g. font-heading, font-base) */
+  --font-heading: 'Segoe UI', 'Segoe UI Web (West European)',       /* headings, titles, display text */
+    -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+  --font-base: 'Segoe UI', 'Segoe UI Web (West European)',          /* body text, labels, UI controls */
+    -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+  --font-monospace: Consolas, 'Courier New', Courier, monospace;     /* code, pre-formatted text */
+  --font-numeric: Bahnschrift, 'Segoe UI',                          /* KPI values, numeric displays */
+    'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto,
+    'Helvetica Neue', sans-serif;
+
+  /* Icon Sizes — 100-based scale
+     Usage: icon-size-* custom utility (e.g. icon-size-200) */
+  --icon-size-100: 12px;
+  --icon-size-200: 16px;
+  --icon-size-300: 20px;
+  --icon-size-400: 24px;
+  --icon-size-500: 28px;
+  --icon-size-600: 32px;
+  --icon-size-700: 48px;
+}
+
+@utility icon-size-* {
+  width: --value(--icon-size-*);
+  height: --value(--icon-size-*);
+}
+
+@layer base {
+  .dark {
+    /* Color tokens — dark theme */
+    --color-background: #292929;
+    --color-foreground: #ffffff;
+
+    --color-card: #292929;
+    --color-card-foreground: #ffffff;
+
+    --color-popover: #292929;
+    --color-popover-foreground: #ffffff;
+
+    --color-primary: #115ea3;
+    --color-primary-foreground: #ffffff;
+
+    --color-secondary: #1f1f1f;
+    --color-secondary-foreground: #ffffff;
+
+    --color-muted: #141414;
+    --color-muted-foreground: #adadad;
+
+    --color-accent: #3d3d3d;
+    --color-accent-foreground: #ffffff;
+
+    --color-destructive: #dc626d;
+    --color-destructive-foreground: #ffffff;
+
+    --color-success: #54b054;
+    --color-success-foreground: #ffffff;
+
+    --color-border: #525252;
+    --color-input: #525252;
+    --color-ring: #479ef5;
+
+    --color-brand:            #115ea3;
+    --color-brand-foreground: #479ef5;
+    --color-hover:            #3d3d3d;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.dashboard-shell {
+  min-height: 100%;
+  padding: 42px clamp(20px, 5vw, 72px) 24px;
+  background: #f4f1eb;
+  color: #17211f;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.dashboard-header, .dashboard-footer, .panel-heading, .category-label, .legend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-header {
+  max-width: 1320px;
+  margin: 0 auto 34px;
+  gap: 24px;
+}
+
+.eyebrow, .panel-kicker, .dashboard-footer, .kpi-card > span, .kpi-card small {
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 0.11em;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.eyebrow { display: flex; gap: 8px; align-items: center; color: #198f70; }
+.dashboard-header h1 { margin: 8px 0 4px; font-size: clamp(34px, 5vw, 58px); line-height: 0.98; letter-spacing: -0.03em; font-weight: 500; }
+.dashboard-header p { margin: 0; color: #68736e; font: 15px/1.5 'Segoe UI', sans-serif; }
+.refresh-button { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #cbd3cb; border-radius: 999px; background: #fffdf8; color: #17211f; padding: 10px 15px; font: 600 13px 'Segoe UI', sans-serif; cursor: pointer; }
+.refresh-button:hover { border-color: #198f70; }
+.refresh-button:disabled { opacity: 0.65; cursor: wait; }
+.spin { animation: spin 0.9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.page-tabs { max-width: 1320px; margin: 0 auto 18px; display: flex; gap: 6px; border-bottom: 1px solid #d7ddd7; }
+.page-tabs button { display: inline-flex; align-items: center; gap: 7px; margin-bottom: -1px; padding: 11px 15px; border: 1px solid transparent; border-bottom: 2px solid transparent; background: transparent; color: #718079; font: 600 13px 'Segoe UI', sans-serif; cursor: pointer; }
+.page-tabs button:hover { color: #198f70; }
+.page-tabs button.active { border-color: #d7ddd7; border-bottom-color: #198f70; border-radius: 5px 5px 0 0; background: #fffdf8; color: #17211f; }
+
+.kpi-grid, .content-grid { max-width: 1320px; margin: 0 auto; display: grid; gap: 14px; }
+.kpi-grid { grid-template-columns: repeat(4, 1fr); margin-bottom: 14px; }
+.kpi-card { position: relative; min-height: 155px; padding: 20px; border: 1px solid #dfe2dc; border-radius: 6px; background: #fffdf8; overflow: hidden; }
+.kpi-card::after { content: ''; position: absolute; right: -28px; bottom: -42px; width: 120px; height: 120px; border-radius: 50%; background: currentColor; opacity: 0.07; }
+.kpi-card.mint { color: #198f70; } .kpi-card.coral { color: #dd6b52; } .kpi-card.sky { color: #3987a6; } .kpi-card.gold { color: #b88b28; }
+.kpi-icon { display: grid; place-items: center; width: 34px; height: 34px; margin-bottom: 18px; border-radius: 50%; background: currentColor; color: #fffdf8; }
+.kpi-card > span { display: block; color: #69736f; }
+.kpi-card strong { display: block; margin: 6px 0 9px; color: #17211f; font-size: clamp(25px, 3vw, 36px); font-weight: 500; letter-spacing: -0.03em; }
+.kpi-card small { color: #9aa19c; font-weight: 500; letter-spacing: 0; }
+
+.content-grid { grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr); }
+.panel { min-height: 365px; padding: 24px; border: 1px solid #dfe2dc; border-radius: 6px; background: #fffdf8; }
+.panel-heading { align-items: flex-start; color: #80908a; }
+.panel-heading h2 { margin: 5px 0 0; color: #17211f; font-size: 23px; font-weight: 500; letter-spacing: -0.02em; }
+.panel-kicker { color: #9aa19c; }
+.chart-area { display: flex; align-items: stretch; height: 245px; gap: clamp(3px, 1vw, 10px); margin-top: 28px; padding: 0 5px; border-bottom: 1px solid #dfe2dc; }
+.trend-column { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; }
+.trend-bars { position: relative; flex: 1; display: flex; justify-content: center; align-items: flex-end; gap: 2px; }
+.trend-bars span { display: block; width: 46%; min-height: 2px; border-radius: 3px 3px 0 0; transition: height .35s ease; }
+.revenue-bar { background: #198f70; } .target-bar { background: #e9b9aa; }
+.trend-column small { height: 27px; padding-top: 8px; overflow: hidden; color: #8a938e; font: 10px 'Segoe UI', sans-serif; white-space: nowrap; }
+.legend { justify-content: flex-start; gap: 18px; margin-top: 15px; color: #68736e; font: 12px 'Segoe UI', sans-serif; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; } .legend i { width: 8px; height: 8px; border-radius: 50%; } .legend-revenue { background: #198f70; } .legend-target { background: #e9b9aa; }
+.category-list { margin-top: 34px; }
+.category-row { margin-bottom: 28px; font-family: 'Segoe UI', sans-serif; }
+.category-label { margin-bottom: 10px; font-size: 13px; } .category-label strong { color: #17211f; font-weight: 600; } .category-label span { color: #68736e; }
+.category-track { height: 10px; margin-bottom: 8px; border-radius: 10px; background: #e8ebe5; overflow: hidden; } .category-track span { display: block; height: 100%; border-radius: inherit; background: #dd6b52; }
+.category-row:nth-child(2) .category-track span { background: #3987a6; }
+.category-row small { color: #9aa19c; font-size: 11px; }
+.dashboard-footer { max-width: 1320px; margin: 19px auto 0; color: #87918b; font-size: 10px; }
+.dashboard-footer > span { display: inline-flex; align-items: center; gap: 7px; } .dashboard-footer strong { color: #53615b; } .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #198f70; box-shadow: 0 0 0 4px #d7eee5; }
+.status-banner { max-width: 1320px; margin: -14px auto 14px; padding: 12px 14px; border: 1px solid #e9b9aa; border-radius: 4px; background: #fff4f0; color: #934c3c; font: 13px 'Segoe UI', sans-serif; }
+.analysis-grid, .performance-layout { max-width: 1320px; margin: 0 auto 14px; display: grid; grid-template-columns: minmax(280px, .8fr) minmax(0, 1.2fr); gap: 14px; }
+.scenario-value { margin: 36px 0 3px; color: #198f70; font-size: 46px; line-height: 1; }
+.muted-copy { max-width: 310px; color: #68736e; font: 13px/1.5 'Segoe UI', sans-serif; }
+.scenario-slider { width: 100%; margin-top: 26px; accent-color: #198f70; cursor: pointer; }
+.slider-labels { display: flex; justify-content: space-between; color: #9aa19c; font: 11px 'Segoe UI', sans-serif; }
+.scenario-result { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 34px; padding-top: 17px; border-top: 1px solid #e0e4df; font-family: 'Segoe UI', sans-serif; }
+.scenario-result span, .scenario-result small { color: #68736e; font-size: 12px; }.scenario-result strong { color: #17211f; font-size: 22px; }.scenario-result small { color: #198f70; }
+.team-list { margin-top: 31px; }.team-row { margin-bottom: 23px; font-family: 'Segoe UI', sans-serif; }.team-bars { position: relative; height: 15px; margin: 7px 0 7px; border-radius: 10px; background: #edf0eb; overflow: hidden; }.team-bars span { position: absolute; left: 0; height: 100%; border-radius: inherit; }.team-revenue { background: #198f70; z-index: 1; }.team-target { background: #e9b9aa; opacity: .8; }.team-row small { color: #9aa19c; font-size: 11px; }
+.year-panel { max-width: 1320px; min-height: auto; margin: 0 auto; }.year-grid { margin-top: 25px; font: 13px 'Segoe UI', sans-serif; }.year-grid-head, .year-grid-row { display: grid; grid-template-columns: .7fr 1.2fr 1.2fr 1fr; gap: 12px; align-items: center; padding: 12px 4px; }.year-grid-head { border-bottom: 1px solid #dfe2dc; color: #8b9690; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }.year-grid-row { border-bottom: 1px solid #edf0eb; color: #68736e; }.year-grid-row strong { color: #17211f; }
+.performance-layout { grid-template-columns: .9fr 1.1fr; }.manager-panel, .performance-table-panel { min-height: 355px; }.manager-list { margin-top: 30px; }.manager-row { margin-bottom: 28px; font-family: 'Segoe UI', sans-serif; }.manager-name { display: flex; justify-content: space-between; gap: 15px; font-size: 14px; }.manager-name strong { color: #17211f; }.manager-name span { color: #68736e; }.manager-track { height: 18px; margin: 9px 0; border-radius: 8px; background: #edf0eb; overflow: hidden; }.manager-track span { display: block; height: 100%; border-radius: inherit; background: #3987a6; }.manager-metrics { display: flex; gap: 14px; color: #9aa19c; font-size: 11px; }
+.performance-table { margin-top: 28px; overflow-x: auto; font: 12px 'Segoe UI', sans-serif; }.performance-head, .performance-row, .performance-total { min-width: 570px; display: grid; grid-template-columns: 1.3fr 1fr 1.35fr .9fr .9fr; gap: 10px; align-items: center; padding: 12px 8px; }.performance-head { border-bottom: 1px solid #dfe2dc; color: #8b9690; font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }.performance-row { border-bottom: 1px solid #edf0eb; color: #68736e; }.performance-row strong, .performance-total strong { color: #17211f; }.performance-total { margin-top: 5px; border-top: 2px solid #cbd3cb; color: #17211f; }
+
+@media (max-width: 780px) {
+  .dashboard-shell { padding: 28px 16px 20px; }
+  .dashboard-header { align-items: flex-start; flex-direction: column; margin-bottom: 24px; }
+  .refresh-button { align-self: stretch; justify-content: center; }
+  .page-tabs { overflow-x: auto; }.page-tabs button { flex: 0 0 auto; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .content-grid { grid-template-columns: 1fr; }
+  .analysis-grid, .performance-layout { grid-template-columns: 1fr; }
+  .panel { min-height: 330px; padding: 18px; }
+  .chart-area { height: 220px; }
+  .dashboard-footer { align-items: flex-start; flex-direction: column; gap: 9px; }
+}

@@ -1,0 +1,9 @@
+EVALUATE
+SUMMARIZECOLUMNS(
+    'SalesPerson'[Manager],
+    "Quantity", [Quantity of Sales],
+    "Revenue", [Revenue],
+    "Weight", [Weight],
+    "Customers", [Customer Coverage]
+)
+ORDER BY [Revenue] DESC
